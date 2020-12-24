@@ -30,39 +30,18 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
-
-  <div id="test">
-  <ContactForm></ContactForm>
-  </div>
-  <div id="counter">
-    Counter: {{ counter }}
-  </div>
 </template>
 
-<<<<<<< Updated upstream:src/components/HelloWorld.vue
-<script>
-export default {
-  name: 'HelloWorld',
-=======
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import ContactForm from '@/components/ContactForm.vue'
 
 @Options({
->>>>>>> Stashed changes:snakegame/src/components/HelloWorld.vue
   props: {
     msg: String
-  },
-  components: {
-    ContactForm
   }
-<<<<<<< Updated upstream:src/components/HelloWorld.vue
-=======
-
 })
 export default class HelloWorld extends Vue {
   msg!: string
->>>>>>> Stashed changes:snakegame/src/components/HelloWorld.vue
 }
 
 </script>
