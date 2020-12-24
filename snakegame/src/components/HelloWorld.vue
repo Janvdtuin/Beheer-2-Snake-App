@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <button v-on:click="increment">Increment</button>
+
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -8,7 +10,8 @@
     </p>
     <h3>Installed CLI Plugins</h3>
     <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
+      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
+      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
     </ul>
     <h3>Essential Links</h3>
     <ul>
@@ -27,19 +30,41 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
   </div>
+
+  <div id="test">
+  <ContactForm></ContactForm>
+  </div>
+  <div id="counter">
+    Counter: {{ counter }}
+  </div>
 </template>
 
+<<<<<<< Updated upstream:src/components/HelloWorld.vue
+<script>
+export default {
+  name: 'HelloWorld',
+=======
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
+import ContactForm from '@/components/ContactForm.vue'
 
 @Options({
+>>>>>>> Stashed changes:snakegame/src/components/HelloWorld.vue
   props: {
     msg: String
+  },
+  components: {
+    ContactForm
   }
+<<<<<<< Updated upstream:src/components/HelloWorld.vue
+=======
+
 })
 export default class HelloWorld extends Vue {
   msg!: string
+>>>>>>> Stashed changes:snakegame/src/components/HelloWorld.vue
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
