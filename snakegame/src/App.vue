@@ -1,23 +1,11 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <counter></counter>
+  <board :height="10" :width="10"></board>
 </template>
 
-<script lang="ts">
-import Counter from '@/components/Counter.vue'
+<script lang='ts'>
+import Board from '@/views/Board.vue'
 
 export default {
-  components: { Counter }
+  components: { Board }
 }
 </script>
-
-<style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-</style>
