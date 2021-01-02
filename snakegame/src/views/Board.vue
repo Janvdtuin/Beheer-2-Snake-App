@@ -27,7 +27,6 @@ html, body {
   margin: 0;
   padding: 0;
 }
-
 #app {
   display: flex;
   height: 100%;
@@ -36,26 +35,21 @@ html, body {
   flex-direction: row;
   background-color: #303030;
 }
-
 .column {
   display: flex;
   flex-direction: column;
 }
-
 .row {
   display: flex;
   flex-direction: row;
 }
-
 .board {
   border: solid 1px black;
 }
-
 .tile {
   background-color: #212121;
   height: 50px;
   width: 50px;
   border: solid 1px black;
 }
-
 </style>
