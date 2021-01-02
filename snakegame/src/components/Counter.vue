@@ -10,6 +10,7 @@
 // import dependencies.
 import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
+import { TileState } from '@/models/TileState'
 
 export default {
   name: 'Counter',
@@ -17,7 +18,7 @@ export default {
   setup () {
     // simple function for onclick button.
     function test () {
-      alert('Clicked the button')
+      console.log(TileState)
     }
     const store = useStore()
     const count = computed(() => store.state.count)
