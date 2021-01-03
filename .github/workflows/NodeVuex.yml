@@ -38,7 +38,7 @@ jobs:
         shell: bash
         working-directory: snakegame
     steps:
-     - name: Checkout master branch
+      - name: Checkout master branch
         uses: actions/checkout@v2
       - name: Running unit tests
         run: npm run test:unit
