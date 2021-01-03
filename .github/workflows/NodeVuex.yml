@@ -40,6 +40,8 @@ jobs:
     steps:
       - name: Checkout master branch
         uses: actions/checkout@v2
+      - name: Setting up NodeJS
+        uses: actions/setup-node@master
       - name: Running unit tests
         run: npm run test:unit
 
