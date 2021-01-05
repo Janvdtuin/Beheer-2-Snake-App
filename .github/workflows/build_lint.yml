@@ -1,0 +1,25 @@
+# This workflow installs the dependencies, builds the application and lints the code on every pull request to the development branch.
+name: Build and Lint
+on:
+  pull_request:
+    branches: [ development ]
+
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Lint
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+      - name: Setting up NodeJS
+        uses: actions/setup-node@master
+      - name: installling Node dependencies
+        run: npm install
+      - name: Building node application
+        run: npm run build
+      - name: eslint
+        uses: icrawl/action-eslint@v1

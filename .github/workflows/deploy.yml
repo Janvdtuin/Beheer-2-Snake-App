@@ -1,0 +1,17 @@
+# This workflow deploys the development branch to Heroku on every pullrequest to the development branch.
+name: Deploy to Heroku
+on:
+  pull_request:
+    branches: [ development ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.8.8
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "beheersnakegame"
+          heroku_email: "janvandertuin@live.nl"
