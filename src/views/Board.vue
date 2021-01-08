@@ -1,12 +1,13 @@
 <template>
   <div class="column board">
-    <div class="row" v-for="index in height" :key="index">
-      <div class="tile" v-for="index in width" :key="index"></div>
+    <div class="row" v-for="indexY in height" :key="indexY">
+      <tile v-for="indexX in width" :key="indexX" :posX="indexX" :posY="indexY" :TileState="Empty"/>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
+import Tile from '@/views/Tile.vue'
 import { Options, Vue } from 'vue-class-component'
 
 @Options({
@@ -16,8 +17,12 @@ import { Options, Vue } from 'vue-class-component'
   }
 })
 export default class Board extends Vue {
+  name: 'Board'
   width!: number
   height!: number
+  components: {
+    tile;
+  }
 }
 </script>
 
@@ -46,7 +51,7 @@ html, body {
 .board {
   border: solid 1px black;
 }
-.tile {
+tile {
   background-color: #212121;
   height: 50px;
   width: 50px;
