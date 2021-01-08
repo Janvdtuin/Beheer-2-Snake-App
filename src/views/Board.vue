@@ -1,13 +1,14 @@
 <template>
   <div class="column board">
     <div class="row" v-for="indexY in height" :key="indexY">
-      <tile v-for="indexX in width" :key="indexX" :posX="indexX" :posY="indexY" :TileState="Empty"/>
+      <tile v-for="indexX in width" refs="tile" :key="indexX" :posX="indexX" :posY="indexY" :TileState="TileState.Apple"/>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
 import Tile from '@/views/Tile.vue'
+import { TileState } from '@/models/TileState'
 import { Options, Vue } from 'vue-class-component'
 
 @Options({
@@ -17,11 +18,15 @@ import { Options, Vue } from 'vue-class-component'
   }
 })
 export default class Board extends Vue {
-  name: 'Board'
+  name = 'Board'
   width!: number
   height!: number
-  components: {
-    tile;
+  components = { Tile }
+
+  data () {
+    return {
+      TileState
+    }
   }
 }
 </script>

@@ -17,10 +17,9 @@ import { TileState } from '@/models/TileState'
 })
 
 export default class Tile extends Vue {
-  width!: number
-  height!: number
+  test = ''
 }
-console.log("reee")
+console.log(this)
 </script>
 
 <style>
