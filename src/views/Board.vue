@@ -1,13 +1,13 @@
 <template>
   <div class="column board">
     <div class="row" v-for="indexY in height" :key="indexY">
-      <tile v-for="indexX in width" refs="tile" :key="indexX" :posX="indexX" :posY="indexY" :TileState="TileState.Apple"/>
+      <tile v-for="indexX in width" :key="indexX" :tileState="tileState(indexX, indexY)"/>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import Tile from '@/views/Tile.vue'
+import Tile from '@/components/Tile.vue'
 import { TileState } from '@/models/TileState'
 import { Options, Vue } from 'vue-class-component'
 
@@ -15,18 +15,21 @@ import { Options, Vue } from 'vue-class-component'
   props: {
     width: { required: true, type: Number },
     height: { required: true, type: Number }
-  }
+  },
+  components: {
+    Tile
+  },
+  name: 'Board'
 })
 export default class Board extends Vue {
-  name = 'Board'
   width!: number
   height!: number
-  components = { Tile }
 
-  data () {
-    return {
-      TileState
-    }
+  tileState (indexX: number, indexY: number) {
+    // TODO: return correct TileState from store based on index
+    if (indexX === 8 && indexY < 7 && indexY > 1) return TileState.Snake
+    if (indexX === 8 && indexY === 8) return TileState.Apple
+    return TileState.Empty
   }
 }
 </script>
@@ -54,12 +57,6 @@ html, body {
   flex-direction: row;
 }
 .board {
-  border: solid 1px black;
-}
-tile {
-  background-color: #212121;
-  height: 50px;
-  width: 50px;
   border: solid 1px black;
 }
 </style>
