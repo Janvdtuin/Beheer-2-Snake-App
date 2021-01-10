@@ -12,5 +12,5 @@ test('Board.vue', () => {
     }
   })
 
-  expect(wrapper.findAll('.tile').length).toBe(width * height)
+  expect(wrapper.findAllComponents({ name: 'tile' }).length).toBe(width * height)
 })
