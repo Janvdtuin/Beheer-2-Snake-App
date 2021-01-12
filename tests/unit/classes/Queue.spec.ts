@@ -1,5 +1,4 @@
-import { mount } from '@vue/test-utils'
-import { Queue } from '@/models/Queue'
+import { Queue } from '@/classes/Queue'
 
 test('Queue.ts', () => {
   const queue = new Queue()
