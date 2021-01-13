@@ -1,19 +1,22 @@
+import { TileState } from '@/models/TileState'
 import { createStore } from 'vuex'
 
-const state = {
-  count: 0
+export interface State {
+  board: Array<Array<TileState>>;
 }
 
-const mutations = {
-  increment (state: any) {
-    state.count++
+export const store = createStore<State>({
+  state: {
+    board: []
   },
-
-  decrement (state: any) {
-    state.count--
+  mutations: {
+    updateBoard (state, board: Array<Array<TileState>>) {
+      state.board = board
+    }
+  },
+  getters: {
+    board: state => {
+      return state.board
+    }
   }
-}
-export default createStore({
-  state,
-  mutations
 })
