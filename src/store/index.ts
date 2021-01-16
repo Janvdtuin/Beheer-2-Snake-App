@@ -1,19 +1,31 @@
+import { Direction } from '@/models/Direction'
+import { TileState } from '@/models/TileState'
 import { createStore } from 'vuex'
 
-const state = {
-  count: 0
+export interface State {
+  board: Array<Array<TileState>>;
+  direction: Direction;
 }
 
-const mutations = {
-  increment (state: any) {
-    state.count++
+export const store = createStore<State>({
+  state: {
+    board: [],
+    direction: Direction.Right
   },
-
-  decrement (state: any) {
-    state.count--
+  mutations: {
+    updateBoard (state, board: Array<Array<TileState>>) {
+      state.board = board
+    },
+    updateDirection (state, direction: Direction) {
+      state.direction = direction
+    }
+  },
+  getters: {
+    board: state => {
+      return state.board
+    },
+    direction: state => {
+      return state.direction
+    }
   }
-}
-export default createStore({
-  state,
-  mutations
 })
