@@ -8,8 +8,9 @@
 
 <script lang='ts'>
 import Tile from '@/components/Tile.vue'
-import { TileState } from '@/models/TileState'
+import { key } from '@/store'
 import { Options, Vue } from 'vue-class-component'
+import { useStore } from 'vuex'
 
 @Options({
   props: {
@@ -25,11 +26,11 @@ export default class Board extends Vue {
   width!: number
   height!: number
 
+  store = useStore(key)
+
   tileState (indexX: number, indexY: number) {
-    // TODO: return correct TileState from store based on index
-    if (indexX === 8 && indexY < 7 && indexY > 1) return TileState.Snake
-    if (indexX === 8 && indexY === 8) return TileState.Apple
-    return TileState.Empty
+    // v-for starts at 1 so to get the actual index you have to do -1
+    return this.store.getters.board[indexX - 1][indexY - 1]
   }
 }
 </script>
