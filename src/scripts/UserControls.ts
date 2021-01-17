@@ -1,7 +1,6 @@
 import { store } from '@/store'
 import { Direction } from '@/models/Direction'
 document.addEventListener('keydown', (e) => {
-  console.log(e)
   if (e.key === 'w') {
     store.commit('updateDirection', Direction.Up)
   } else if (e.key === 'd') {
