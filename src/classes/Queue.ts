@@ -13,6 +13,10 @@ export class Queue<T> {
     return this.storage.length
   }
 
+  get last () {
+    return this.storage[this.storage.length - 1]
+  }
+
   forEach (callbackfn: (value: T) => void): void {
     this.storage.forEach(callbackfn)
   }
