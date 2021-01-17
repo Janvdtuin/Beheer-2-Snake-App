@@ -4,8 +4,10 @@
 
 <script lang='ts'>
 import Board from '@/views/Board.vue'
+import { store } from '@/store/index'
 
 export default {
-  components: { Board }
+  components: { Board },
+  provide: { store }
 }
 </script>

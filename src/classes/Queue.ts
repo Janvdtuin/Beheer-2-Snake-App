@@ -1,15 +1,19 @@
 export class Queue<T> {
-  public storage: T[] = [];
+  private storage: T[] = [];
 
-  push (item: T): void {
+  enqueue (item: T): void {
     this.storage.push(item)
   }
 
-  pop (): T | undefined {
+  dequeue (): T | undefined {
     return this.storage.shift()
   }
 
   size (): number {
     return this.storage.length
+  }
+
+  forEach (callbackfn: (value: T) => void): void {
+    this.storage.forEach(callbackfn)
   }
 }

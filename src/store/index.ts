@@ -3,8 +3,8 @@ import { TileState } from '@/models/TileState'
 import { createStore } from 'vuex'
 
 export interface State {
-  board: Array<Array<TileState>>;
-  direction: Direction;
+    board: Array<Array<TileState>>;
+    direction: Direction;
 }
 
 export const store = createStore<State>({
