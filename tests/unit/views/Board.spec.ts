@@ -4,8 +4,10 @@ import { store } from '@/store'
 import { TileState } from '@/models/TileState'
 
 test('Board.vue', () => {
-  const width = 10
   const height = 10
+  const width = 10
+
+  store.commit('updateBoard', Array(height).fill(TileState.Snake).map(() => Array(width).fill(TileState.Snake)))
 
   store.commit('updateBoard', Array(height).fill(TileState.Empty).map(() => Array(width).fill(TileState.Empty)))
 

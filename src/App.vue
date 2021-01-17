@@ -1,5 +1,5 @@
 <template>
-  <board :height="10" :width="10"></board>
+  <board></board>
 </template>
 
 <script lang='ts'>

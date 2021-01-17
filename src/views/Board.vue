@@ -1,35 +1,28 @@
 <template>
   <div class="column board">
-    <div class="row" v-for="indexY in height" :key="indexY">
-      <tile v-for="indexX in width" :key="indexX" :tileState="tileState(indexX, indexY)"/>
+    <div class="row" v-for="row in board" :key="row">
+      <tile v-for="tile in row" :key="tile" :tileState="tile"/>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
 import Tile from '@/components/Tile.vue'
+import { TileState } from '@/models/TileState'
 import { Options, Vue } from 'vue-class-component'
 import { useStore } from 'vuex'
 
 @Options({
-  props: {
-    width: { required: true, type: Number },
-    height: { required: true, type: Number }
-  },
   components: {
     Tile
   },
   name: 'Board'
 })
 export default class Board extends Vue {
-  width!: number
-  height!: number
-
   store = useStore()
 
-  tileState (indexX: number, indexY: number) {
-    // v-for starts at 1 so to get the actual index you have to do -1
-    return this.store.getters.board[indexX - 1][indexY - 1]
+  get board (): TileState[][] {
+    return this.store.state.board
   }
 }
 </script>
