@@ -6,7 +6,7 @@ import { key, store } from '@/store'
 const app = createApp(App)
 app.use(store, key)
 
-const gameLogic = new GameLogic()
+const gameLogic = new GameLogic(10, 10)
 gameLogic.Initialize()
 
 app.mount('#app')

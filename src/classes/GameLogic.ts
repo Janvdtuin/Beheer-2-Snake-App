@@ -8,8 +8,8 @@ import { Queue } from '@/classes/Queue'
 import { Point } from '@/models/Point'
 
 export class GameLogic {
-  private width = 10
-  private height = 10
+  private width: number
+  private height: number
 
   private snake: Queue<Point>
   private apple: Point
@@ -34,7 +34,10 @@ export class GameLogic {
     store.commit('updateBoard', this.addApple(this.addSnake(this.emptyBoard())))
   }
 
-  constructor () {
+  constructor (width: number, height: number) {
+    this.width = width
+    this.height = height
+
     this.snake = new Queue<Point>()
     this.snake.enqueue(new Point(7, 3))
     this.snake.enqueue(new Point(7, 2))
