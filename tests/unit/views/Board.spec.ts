@@ -9,6 +9,8 @@ test('Board.vue', () => {
 
   store.commit('updateBoard', Array(height).fill(TileState.Snake).map(() => Array(width).fill(TileState.Snake)))
 
+  store.commit('updateBoard', Array(height).fill(TileState.Empty).map(() => Array(width).fill(TileState.Empty)))
+
   const wrapper = mount(Board, {
     global: {
       plugins: [store]
