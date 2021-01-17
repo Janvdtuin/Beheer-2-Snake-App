@@ -8,7 +8,6 @@
 
 <script lang='ts'>
 import Tile from '@/components/Tile.vue'
-import { key } from '@/store'
 import { Options, Vue } from 'vue-class-component'
 import { useStore } from 'vuex'
 
@@ -26,7 +25,7 @@ export default class Board extends Vue {
   width!: number
   height!: number
 
-  store = useStore(key)
+  store = useStore()
 
   tileState (indexX: number, indexY: number) {
     // v-for starts at 1 so to get the actual index you have to do -1
