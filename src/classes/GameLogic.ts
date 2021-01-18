@@ -1,6 +1,3 @@
-// TODO: remove eslint-disable when class is implemented
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Direction } from '@/models/Direction'
 import { TileState } from '@/models/TileState'
 import { store } from '@/store/index'
@@ -15,6 +12,8 @@ export class GameLogic {
   private apple: Point
 
   private intervalId: number | undefined
+
+  private direction: Direction
 
   private emptyBoard () {
     return Array(this.height).fill(TileState.Empty).map(() => Array(this.width).fill(TileState.Empty))
@@ -37,12 +36,13 @@ export class GameLogic {
   }
 
   private collidesWithSnake (p: Point) {
+    let collides = false
     this.snake.forEach(tile => {
       if (p.x === tile.x && p.y === tile.y) {
-        return true
+        collides = true
       }
     })
-    return false
+    return collides
   }
 
   private spawnApple (): void {
@@ -56,20 +56,39 @@ export class GameLogic {
   private Tick () {
     const head = new Point(this.snake.last.x, this.snake.last.y)
 
-    if (store.getters.direction === Direction.Right) {
+    if (this.direction === Direction.Down) {
+      if (store.getters.direction !== Direction.Up) {
+        this.direction = store.getters.direction
+      }
+    } else if (this.direction === Direction.Up) {
+      if (store.getters.direction !== Direction.Down) {
+        this.direction = store.getters.direction
+      }
+    } else if (this.direction === Direction.Left) {
+      if (store.getters.direction !== Direction.Right) {
+        this.direction = store.getters.direction
+      }
+    } else if (this.direction === Direction.Right) {
+      if (store.getters.direction !== Direction.Left) {
+        this.direction = store.getters.direction
+      }
+    }
+
+    if (this.direction === Direction.Right) {
       head.x += 1
-    } else if (store.getters.direction === Direction.Left) {
+    } else if (this.direction === Direction.Left) {
       head.x -= 1
-    } else if (store.getters.direction === Direction.Up) {
+    } else if (this.direction === Direction.Up) {
       head.y -= 1
-    } else if (store.getters.direction === Direction.Down) {
+    } else if (this.direction === Direction.Down) {
       head.y += 1
     }
 
     if (head.x === this.apple.x && head.y === this.apple.y) {
       this.spawnApple()
     } else {
-      if ((head.x > this.width - 1 || head.y > this.height - 1) || this.collidesWithSnake(head)) {
+      if ((head.x > this.width - 1 || head.x < 0 || head.y > this.height - 1 || head.y < 0) ||
+        this.collidesWithSnake(head)) {
         return this.Initialize()
       }
       this.snake.dequeue()
@@ -80,10 +99,6 @@ export class GameLogic {
     this.updateBoard()
   }
 
-  public ChangeDirection (direction: Direction): void {
-
-  }
-
   constructor (width: number, height: number) {
     this.width = width
     this.height = height
@@ -91,6 +106,8 @@ export class GameLogic {
     this.snake = new Queue<Point>()
 
     this.apple = new Point(0, 0)
+
+    this.direction = Direction.Right
   }
 
   public Initialize (): void {
@@ -106,6 +123,8 @@ export class GameLogic {
     this.apple = new Point(7, 7)
     this.updateBoard()
 
-    this.intervalId = setInterval(this.Tick.bind(this), 500)
+    this.direction = Direction.Right
+
+    this.intervalId = setInterval(this.Tick.bind(this), 333)
   }
 }
