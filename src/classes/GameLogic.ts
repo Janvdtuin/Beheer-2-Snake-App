@@ -84,17 +84,18 @@ export class GameLogic {
       head.y += 1
     }
 
-    if (head.x === this.apple.x && head.y === this.apple.y) {
-      this.spawnApple()
-    } else {
-      if ((head.x > this.width - 1 || head.x < 0 || head.y > this.height - 1 || head.y < 0) ||
-        this.collidesWithSnake(head)) {
-        return this.Initialize()
-      }
-      this.snake.dequeue()
+    if ((head.x > this.width - 1 || head.x < 0 || head.y > this.height - 1 || head.y < 0) ||
+      this.collidesWithSnake(head)) {
+      return this.Initialize()
     }
 
     this.snake.enqueue(head)
+
+    if (head.x === this.apple.x && head.y === this.apple.y) {
+      this.spawnApple()
+    } else {
+      this.snake.dequeue()
+    }
 
     this.updateBoard()
   }
